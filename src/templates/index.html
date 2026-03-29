@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endpoint Security – SOC Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dark">
+
+<header class="header">
+  <div class="container header-content">
+    <div class="header-left">
+      <h1 class="header-title">🛡 Endpoint Security – SOC Dashboard</h1>
+    </div>
+
+    <div class="header-right">
+      <!-- THEME TOGGLE -->
+      <button id="themeToggle" class="btn-icon">🌗</button>
+
+      <!-- LIVE -->
+      <div class="live-indicator">
+        <span class="live-dot"></span>
+        <span class="live-text">LIVE</span>
+      </div>
+
+      <!-- ATTACK -->
+      <button id="attackButton" class="btn-attack">
+        🚨 Simulate Endpoint Attack
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main container">
+
+  <!-- KPI CARDS -->
+  <section class="kpi-grid">
+    <div class="card kpi-card">
+      <p class="kpi-label">Total Samples</p>
+      <p id="totalSamples" class="kpi-value">—</p>
+    </div>
+
+    <div class="card kpi-card">
+      <p class="kpi-label">Anomalies Detected</p>
+      <p id="anomalies" class="kpi-value kpi-value-danger">—</p>
+    </div>
+
+    <div class="card kpi-card">
+      <p class="kpi-label">Threshold</p>
+      <p id="threshold" class="kpi-value kpi-value-warning">—</p>
+    </div>
+  </section>
+
+  <!-- GRAPH -->
+  <section class="card chart-card">
+    <h3>📈 Live Anomaly Graph</h3>
+    <div id="anomalyChart" class="chart-container">
+      <canvas id="chartCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="card">
+    <h3>🚑 Incident Timeline</h3>
+    <div id="timeline" class="timeline-list">
+      <p class="empty-state">Waiting for data...</p>
+    </div>
+  </section>
+
+  <!-- ENDPOINT TABLE -->
+  <section class="card">
+    <h3>🖥 Endpoint Status</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Endpoint</th>
+          <th>Anomalies</th>
+          <th>Severity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <!-- ✅ IMPORTANT FIX -->
+      <tbody id="endpointTable">
+        <tr>
+          <td colspan="4" class="empty-state">Waiting for data...</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+</main>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>
